@@ -25,4 +25,15 @@ docker-compose down
 ```
 docker-compose up -d --build
 ```
+### Making Changes to MySQL Database
+- To run mysql, use the following command:
+```
+docker exec -it lamp-db-1 mysql -u root -p
+```
+- If you are using a terminal such as Git Bash, you may need to use this command instead:
+```
+winpty docker exec -it lamp-db-1 mysql -u root -p
+```
+- Running these commands will then open the familiar MySQL terminal
+
 
