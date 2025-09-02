@@ -19,7 +19,7 @@ services:
     image: mysql:8.0  # Use the official MySQL 8.0 image
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}  # Set the root password for the database
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:?Error: DB_PASSWORD is not set. Please run the setup_env.sh script in /tools.}
       MYSQL_DATABASE: COP4331  # Automatically creates a database named my_app_db
     volumes:
       - db_data:/var/lib/mysql  # Persist database data in a Docker volume
