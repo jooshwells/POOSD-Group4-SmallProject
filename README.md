@@ -36,5 +36,7 @@ docker exec -it lamp-db-1 mysql -u root -p
 winpty docker exec -it lamp-db-1 mysql -u root -p
 ```
 - Running these commands will then open the familiar MySQL terminal
-
+### Version Information
+- The created Docker container will be running MySQL 8.0.43 and Apache 2.4.65
+- The official DigitalOcean LAMP template runs Apache 2.4.58, but the core functionality of .58 and .65 are identical.
 
