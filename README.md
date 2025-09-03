@@ -29,13 +29,26 @@ docker-compose up -d --build
 ### Making Changes to MySQL Database
 - To run mysql, use the following command:
 ```
-docker exec -it lamp-db-1 mysql -u root -p
+docker exec -it your_database_container mysql -u root -p
 ```
 - If you are using a terminal such as Git Bash and get the error message: the input device is not a tty, you may need to use this command instead:
 ```
-winpty docker exec -it lamp-db-1 mysql -u root -p
+winpty docker exec -it your_database_container mysql -u root -p
 ```
 - Running these commands will then open the familiar MySQL terminal
+### MySQL Database Setup
+- To fill the database with all entries given in the example, execute the following command
+```
+docker exec -i your_database_container mysql -u root -p'your_password' COP4331 < backup.sql
+```
+- Once this has run, you just need to add a user to your database so the API can access it.
+```
+create user 'TheBeast' identified by 'WeLoveCOP4331';
+grant all privileges on COP4331.* to 'TheBeast'@'%';
+```
+- Now your example app should be running on http://localhost:8000
+- If you already had it open and are still receiving errors, try clearing your cache.
+    - On Google Chrome, you can enter developer mode with F12, then right click the refresh button to do a hard reload.  
 ### Version Information
 - The created Docker container will be running MySQL 8.0.43 and Apache 2.4.65
 - The official DigitalOcean LAMP template runs Apache 2.4.58, but the core functionality of .58 and .65 are identical.
