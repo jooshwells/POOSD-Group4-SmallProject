@@ -31,7 +31,7 @@ docker-compose up -d --build
 ```
 docker exec -it lamp-db-1 mysql -u root -p
 ```
-- If you are using a terminal such as Git Bash, you may need to use this command instead:
+- If you are using a terminal such as Git Bash and get the error message: the input device is not a tty, you may need to use this command instead:
 ```
 winpty docker exec -it lamp-db-1 mysql -u root -p
 ```
