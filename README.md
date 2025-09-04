@@ -22,7 +22,7 @@ docker-compose up -d
 ```
 docker-compose down
 ```
-- If changes are made to either docker config files, you will need to shut down the container and run the following command when startingg it back up:
+- If changes are made to either docker config files, you will need to shut down the container and run the following command when starting it back up:
 ```
 docker-compose up -d --build
 ```
