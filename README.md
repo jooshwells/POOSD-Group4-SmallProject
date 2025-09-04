@@ -47,6 +47,10 @@ docker exec -i your_database_container mysql -u root -p'your_password' COP4331 <
 create user 'TheBeast' identified by 'WeLoveCOP4331';
 grant all privileges on COP4331.* to 'TheBeast'@'%';
 ```
+- If you ever need to dump the contents of your database, use the following command:
+```
+docker exec your_database_container mysqldump -u root -p'your_password' your_database_name > dump.sql
+```
 - Now your example app should be running on http://localhost:8000
 - If you already had it open and are still receiving errors, try clearing your cache.
     - On Google Chrome, you can enter developer mode with F12, then right click the refresh button to do a hard reload.
