@@ -1,0 +1,29 @@
+# Use a modern version of Docker Compose
+version: '3.8'
+
+# Define the services (containers) your app needs
+services:
+  # The PHP and Apache service
+  php-apache:
+    build: .  # Tells Docker to build the Dockerfile in the current directory
+    restart: always
+    ports:
+      - "8000:80"  # Map port 8000 on your computer to port 80 in the container
+    volumes:
+      - .:/var/www/html  # Mount your local src folder into the container's web root
+    depends_on:
+      - db  # Tells this service to wait for the database to start first
+
+  # The MySQL database service
+  db:
+    image: mysql:8.0  # Use the official MySQL 8.0 image
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: COP4331  # Automatically creates a database named my_app_db
+    volumes:
+      - db_data:/var/lib/mysql  # Persist database data in a Docker volume
+
+# Define the volume for persistent database storage
+volumes:
+  db_data:
