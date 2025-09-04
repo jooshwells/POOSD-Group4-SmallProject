@@ -14,7 +14,7 @@
     ./setup_env.sh
     ```
     - NOTE: You cannot change this password without hard resetting the database, so choose a password you will remember.
-- To start the docker container, navigate to this directory in the command line and type the command:
+- To start the docker container, first open Docker Desktop, then navigate to this directory in the command line and type the command:
 ```
 docker-compose up -d
 ```
