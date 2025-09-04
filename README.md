@@ -5,7 +5,7 @@
     - This requires that Docker Desktop is installed from https://www.docker.com/get-started/
 - Before starting your container, you need to run the setup_env.sh script to designate what the password for your database will be
     - setup_env.sh will create a file called .env that will store your password in an environmental variable used by the docker config
-    - Ensure that setup_env.sh has execute permissions for your users by running the command:
+    - Ensure that setup_env.sh has execute permissions for your users by running the following command in the /tools directory: 
     ```
     chmod u+x setup_env.sh
     ```
@@ -14,18 +14,19 @@
     ./setup_env.sh
     ```
     - NOTE: You cannot change this password without hard resetting the database, so choose a password you will remember.
-- To start the docker container, first open Docker Desktop, then navigate to this directory in the command line and type the command:
+- To start the docker container, first open Docker Desktop, then navigate to the directory with your repository in the command line, and type the command:
 ```
 docker-compose up -d
 ```
-- When finished, shut down the container with the following command:
+- Whenever you are finished working on your project, make sure to shut down the container with the following command:
 ```
 docker-compose down
 ```
-- If changes are made to either docker config files, run the following command:
+- If changes are made to either docker config files, you will need to shut down the container and run the following command when startingg it back up:
 ```
 docker-compose up -d --build
 ```
+- This just tells Docker to rebuild your containers so that the changes made in the config files will be utilized
 ### Making Changes to MySQL Database
 - To run mysql, use the following command:
 ```
