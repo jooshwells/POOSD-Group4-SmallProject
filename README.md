@@ -48,7 +48,11 @@ grant all privileges on COP4331.* to 'TheBeast'@'%';
 ```
 - Now your example app should be running on http://localhost:8000
 - If you already had it open and are still receiving errors, try clearing your cache.
-    - On Google Chrome, you can enter developer mode with F12, then right click the refresh button to do a hard reload.  
+    - On Google Chrome, you can enter developer mode with F12, then right click the refresh button to do a hard reload.
+### Testing APIs Locally
+- You may still use Postman, but if you try and test the API through http://localhost:8000 on the web app normally, you will get an error stating that you need to install the Postman Desktop Agent
+- You can find the downloads for Postman Agent here: https://www.postman.com/downloads/postman-agent/
+    - This application will run in the background, and will allow you to test your endpoints on your locally running app through Postman in the browser. 
 ### Version Information
 - The created Docker container will be running MySQL 8.0.43 and Apache 2.4.65
 - The official DigitalOcean LAMP template runs Apache 2.4.58, but the core functionality of .58 and .65 are identical.
