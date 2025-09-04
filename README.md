@@ -28,7 +28,13 @@ docker-compose up -d --build
 ```
 - This just tells Docker to rebuild your containers so that the changes made in the config files will be utilized
 ### Making Changes to MySQL Database
-- To run mysql, use the following command:
+- For the following commands, make sure to replace "your_databse_container" with the actual name of your container.
+    - This name can be found by running the following command:
+    ```
+    docker ps
+    ```
+    - This should bring up the names of your currently running containers. The MySQL container is the one with "db" at the end of its name.
+- To run mysql, use the following command, and replace "your_database_container" with the name of your container:
 ```
 docker exec -it your_database_container mysql -u root -p
 ```
@@ -38,16 +44,17 @@ winpty docker exec -it your_database_container mysql -u root -p
 ```
 - Running these commands will then open the familiar MySQL terminal
 ### MySQL Database Setup
-- To fill the database with all entries given in the example, execute the following command
+- To fill the database with all entries given in the example, execute the following command, replacing "your_database_containter" with the name of your container, and "your_password" with your database password.
 ```
 docker exec -i your_database_container mysql -u root -p'your_password' COP4331 < backup.sql
 ```
 - Once this has run, you just need to add a user to your database so the API can access it.
+- To do this, run the following command within MySQL:
 ```
 create user 'TheBeast' identified by 'WeLoveCOP4331';
 grant all privileges on COP4331.* to 'TheBeast'@'%';
 ```
-- If you ever need to dump the contents of your database, use the following command:
+- (Optional Note) If you ever need to dump the contents of your database, use the following command. Note that this command is not run within MySQL, rather from the normal command line environment:
 ```
 docker exec your_database_container mysqldump -u root -p'your_password' your_database_name > dump.sql
 ```
