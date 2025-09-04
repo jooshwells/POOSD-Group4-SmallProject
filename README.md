@@ -46,7 +46,7 @@ winpty docker exec -it your_database_container mysql -u root -p
 ### MySQL Database Setup
 - To fill the database with all entries given in the example, execute the following command, replacing "your_database_containter" with the name of your container, and "your_password" with your database password.
 ```
-docker exec -i your_database_container mysql -u root -p'your_password' COP4331 < backup.sql
+docker exec -i your_database_container mysql -u root -p'your_password' COP4331 < example_data.sql
 ```
 - Once this has run, you just need to add a user to your database so the API can access it.
 - To do this, run the following command within MySQL:
