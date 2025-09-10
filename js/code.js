@@ -11,9 +11,11 @@ function toggleLoginMode() {
         document.getElementById("inner-title").innerText = "PLEASE SIGN UP";
         document.getElementById("authButton").innerText = "Sign Up";
         document.getElementById("toggleButton").innerText = "Switch to Log In";
+		document.getElementById("toggleButton").classList.add("signup");
         document.getElementById("firstName").style.display = "inline-block";
         document.getElementById("lastName").style.display = "inline-block";
         document.getElementById("authResult").innerText = "";
+		document.getElementById("signupq").style.display="none";
     } else {
         toggleMode = "login";
         document.getElementById("inner-title").innerText = "PLEASE LOG IN";
@@ -22,6 +24,7 @@ function toggleLoginMode() {
         document.getElementById("firstName").style.display = "none";
         document.getElementById("lastName").style.display = "none";
         document.getElementById("authResult").innerText = "";
+		document.getElementById("signupq").style.display="block";
     }
 }
 
