@@ -1,4 +1,4 @@
-body 
+ body 
 {
     background-color: #db3c3c;
 }
@@ -15,7 +15,7 @@ body
 
 #loginDiv
 {
-    font-size: 30px;
+    font-size: 50px;
     width: 70%;
     margin-left: 15%;
     padding: 25px;
@@ -41,6 +41,21 @@ body
     background-color: #b2b2b2;
 }
 
+#toggleButton {
+    font-size: 15px;    
+    width: 40%;        
+    height: 40px;        
+    border-radius: 25px;  
+    background-color: #95060a; 
+    color: white;     
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#toggleButton:hover {
+    background-color: #db3c3c; /* Hover color */
+    opacity: 0.8;
+}
+
 .buttons
 {
     font-size: 30px;
@@ -58,11 +73,11 @@ body
 
 #loginName
 {
-	font-size: 30px;
+	font-size: 34px;
 }
 #loginPassword
 {
-	font-size: 30px;
+	font-size: 40px;
 }
 #searchText
 {
@@ -80,6 +95,7 @@ input[type="text"],input[type="password"]{
     margin-left: 10%;
     margin-bottom: 2%;
     font-family: 'Ubuntu', sans-serif;
+    padding:10px 0;
 }
 
 #inner-title{
