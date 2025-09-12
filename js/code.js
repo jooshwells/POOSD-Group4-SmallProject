@@ -1,3 +1,6 @@
+const urlBase = "LAMPAPI";
+const extension = "php";
+
 // Track current mode: "login" or "signup"
 let toggleMode = "login";
 
@@ -11,20 +14,19 @@ function toggleLoginMode() {
         document.getElementById("inner-title").innerText = "PLEASE SIGN UP";
         document.getElementById("authButton").innerText = "Sign Up";
         document.getElementById("toggleButton").innerText = "Switch to Log In";
-		document.getElementById("toggleButton").classList.add("signup");
         document.getElementById("firstName").style.display = "inline-block";
         document.getElementById("lastName").style.display = "inline-block";
         document.getElementById("authResult").innerText = "";
-		document.getElementById("signupq").style.display="none";
+	document.getElementById("signupq").style.display = "none";
     } else {
         toggleMode = "login";
+	document.getElementById("signupq").style.display = "block";
         document.getElementById("inner-title").innerText = "PLEASE LOG IN";
         document.getElementById("authButton").innerText = "Log In";
         document.getElementById("toggleButton").innerText = "Switch to Sign Up";
         document.getElementById("firstName").style.display = "none";
         document.getElementById("lastName").style.display = "none";
         document.getElementById("authResult").innerText = "";
-		document.getElementById("signupq").style.display="block";
     }
 }
 
@@ -67,7 +69,7 @@ function doAuth() {
                     lastName = jsonObject.lastName;
 
                     saveCookie();
-                    window.location.href = "contacts.html";
+                    window.location.href = "loggedin.html";
                 }
             };
 
@@ -96,7 +98,7 @@ function doAuth() {
 
         let jsonPayload = JSON.stringify(tmp);
 
-        let url = urlBase + '/SignUp.' + extension;
+        let url = urlBase + '/Register.' + extension;
 
         let xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
