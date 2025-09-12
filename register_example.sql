@@ -16,6 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Create TheBeast user safely
+--
+DROP USER IF EXISTS 'TheBeast'@'%';
+CREATE USER 'TheBeast' IDENTIFIED BY 'WeLoveCOP4331';
+GRANT ALL PRIVILEGES ON COP4331.* TO 'TheBeast'@'%';
+FLUSH PRIVILEGES;
+
+--
 -- Table structure for table `Users`
 --
 
