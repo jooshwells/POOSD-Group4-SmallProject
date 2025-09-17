@@ -8,8 +8,22 @@
 </head>
 <body>
     <h1>You are logged in</h1>
+    <input type ="text" placeholder="Search Contacts" id="search">
+    <button id="addContact" onclick="addContact();">Add Contacts</button>
+
+    <div class ="addContactPB">
+        <br/>
+        <input type="text" id ="firstN" placeholder="First Name"><br/>
+        <input type="text" id ="lastN" placeholder="Last Name"><br/>
+        <input type="text" id ="phoneN" placeholder="Phone Number"><br/>
+        <input type="text" id ="email" placeholder="Email">
+        <br/>
+        <button id ="verifyContact" onclick="verifyContact();">Add</button>
+
+    </div>
+
     <button id = "signOutB" 
-    onclick="window.location.href='http://mycop4331.it.com/' ">Sign out</button>
+    onclick="window.location.href='index.html' ">Sign out</button>
     <script src="js/code.js" type="text/javascript"></script>
 </body>
 </html>

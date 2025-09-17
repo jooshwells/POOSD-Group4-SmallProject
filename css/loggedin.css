@@ -1,15 +1,100 @@
 body 
 {
-        background-color: rgb(206, 153, 153)
+        background-color: rgb(206, 153, 153);
+        text-align: center;
 
     /*font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
 }
 
+.addContactPB{
+    margin-left:auto;
+    margin-right:auto; 
+    background-color: white;
+    width: 35%;
+    height: 300px;
+    display:none;
+    justify-content: center;
+    opacity: "2.0";
+    border-radius: 5px;
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-#signOutB{
+.addContactPB input{
+    display: flex;
+    margin-left:auto;
+    margin-right:auto; 
+    width: 75%;
+    height: 20px;
+    border-radius: 7px;
+}
+
+#search{
+    display: block;
+    margin-left:auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 10px;
+    border-style: solid;
+    border-color:blue;
+    height: 20px;
+    text-align: center;
+}
+
+#addContact{
+    display: block;
+    margin-top: 50%;
     margin-left: auto;
     margin-right: auto;
+}
+
+#firstN{
+    top: 20%;
+    margin-bottom: 3%;
+    text-align: center;
+    border-color: black;
+    border-style:solid;
+}
+#lastN{
+    left: auto;
+    right: auto;
+    margin-bottom: 3%;
+    text-align: center;
+    border-color: black;
+    border-style:solid;
+}
+
+#phoneN{
+    justify-content: center;
+    margin-bottom: 3%;
+    text-align: center;
+    border-color: black;
+    border-style:solid;
+}
+
+#email{
+    margin-bottom: 3%;
+    text-align: center;
+    border-color: black;
+    border-style:solid;
+}
+
+#verifyContact{
+    display:flex;
+    margin-right:auto; 
+    margin-left:auto; 
+
+}
+
+
+#signOutB{
     background-color: rgb(242, 77, 77);
     color: white;
     border-radius: 5px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+
 }
