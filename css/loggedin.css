@@ -3,18 +3,94 @@ body
         background-color: rgb(206, 153, 153);
         text-align: center;
 
+        background: radial-gradient(circle at 20% 30%, rgba(245, 157, 157, 0.762), transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(203, 23, 23, 0.672), transparent 50%);
+    background-size: 200% 200%;
+    animation: bubbles 20s linear infinite;
+    height: 100vh;
+
+
     /*font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
 }
 
+@keyframes bubbles {
+    0% { background-position: 0 0, 100% 100%; }
+    100% { background-position: 100% 100%, 0 0; }
+}
+
+.contactsBox{
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+
+#contactTable{
+    display:none;
+    max-width: 100%;
+    width: 100%;
+    text-align:center;
+    margin: 0 auto;
+    border-color: black;
+    border-style:solid;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#contactTable th, #contactTable td{
+    border-color: black;
+    border-style:dotted;
+    border-width: 1px;
+    border-collapse: collapse;
+    padding: 6px;
+    word-wrap: break-word;
+}
+
+#Result {
+    width: 70%;
+    background-color: white;
+    display: none;
+    text-align:center;
+    margin: 0 auto;
+    border-color: black;
+    border-style: dashed;
+    border-collapse: collapse;
+    border-width: 1px;
+    animation: pulseBorder 5s infinite alternate;
+}
+
+@keyframes pulseBorder {
+    0% { border-width: 1px; }
+    25%{border-width:1.75 px;}
+    50% { border-width: 2.5px; }
+    75%{border-width:2 px;}
+    100% { border-width: 1.75px; }
+}
+
+#Result th, #Result td{
+    border-color: black;
+    border-style: dashed;
+    border-width: 2px;
+    border-collapse: collapse;
+    padding: 6px;
+    word-wrap: break-word;
+}
+
+
 .addContactPB{
     margin-left:auto;
-    margin-right:auto; 
+    margin-right:auto;
+    align-items: center; 
     background-color: white;
     width: 35%;
     height: 300px;
     display:none;
     justify-content: center;
-    opacity: "2.0";
     border-radius: 5px;
     position: fixed;
     top:50%;
@@ -45,7 +121,7 @@ body
 
 #addContact{
     display: block;
-    margin-top: 50%;
+    margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -82,12 +158,16 @@ body
 }
 
 #verifyContact{
-    display:flex;
+    display:inline-block;
     margin-right:auto; 
     margin-left:auto; 
-
 }
 
+#cancel{
+    display:inline-block;
+    margin-right:auto; 
+    margin-left:auto; 
+}
 
 #signOutB{
     background-color: rgb(242, 77, 77);

@@ -1,4 +1,5 @@
-const urlBase = "LAMPAPI";
+const urlBase = "./LAMPAPI";
+
 const extension = "php";
 
 // Track current mode: "login" or "signup"
@@ -8,22 +9,6 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function verifyContact(){
-/*If contac exists stop and print
-Else add contact and return  */
-    document.querySelector(".addContactPB").style.display = "none";
-    document.querySelector("body").style.backgroundColor = "rgba(206,153,153,1)";
-
-}
-
-function addContact(){
-        document.querySelector(".addContactPB").style.opacity = "1";
-
-    document.querySelector(".addContactPB").style.display = "block";
-    document.querySelector("body").style.backgroundColor = "rgba(206,153,153,0.5)";
-
-
-}
 
 function toggleLoginMode() {
     if(toggleMode === "login") {

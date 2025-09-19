@@ -6,12 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>???</title>
 </head>
-<body>
+<body onload="displayContacts()">
     <h1>You are logged in</h1>
-    <input type ="text" placeholder="Search Contacts" id="search">
+    <input type ="text" placeholder="Search Contacts" id="search" oninput = "search();">
+
+    <br/><br/><br/><br/>
+
+    <div class ="contactsBox">
+
+        <table id ="contactTable">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Number</th>
+        <th>Email</th>
+
+        </table>
+
+    </div>
+
+    <table id="Result">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Number</th>
+        <th>Email</th>
+        <tbody id = ResultBody></tbody>
+    </table>
+
+    <p>Start typing above to search for specific contacts, or press the view all button below to see everyone
+        on your contact list.       
+    </p>
+
+    <button id="viewAll" onclick="displayAll();">View All</button>
     <button id="addContact" onclick="addContact();">Add Contacts</button>
 
-    <div class ="addContactPB">
+    <div class="addContactPB">
         <br/>
         <input type="text" id ="firstN" placeholder="First Name"><br/>
         <input type="text" id ="lastN" placeholder="Last Name"><br/>
@@ -19,12 +47,13 @@
         <input type="text" id ="email" placeholder="Email">
         <br/>
         <button id ="verifyContact" onclick="verifyContact();">Add</button>
+        <button id ="cancel" onclick="cancelAdd();">Cancel</button>
 
     </div>
 
     <button id = "signOutB" 
     onclick="window.location.href='index.html' ">Sign out</button>
-    <script src="js/code.js" type="text/javascript"></script>
+    <script src="js/loggedin.js" type="text/javascript"></script>
 </body>
 </html>
 
