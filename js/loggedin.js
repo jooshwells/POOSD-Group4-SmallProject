@@ -75,10 +75,27 @@ let url= urlBase + "/SearchContact."+ extension;
                 "<td>" + contact.Phone + "</td>" +
                 "<td>" + contact.Email + "</td>";
 
-                tablebody.appendChild(tablerow);
+                let deleteBtn = document.createElement("button");
+                deleteBtn.classList.add("deleteButton");
+                let editBtn = document.createElement("button");
+                editBtn.classList.add("editButton");
+                let buttonCell = document.createElement("td");
+                buttonCell.append(deleteBtn, editBtn);
+                tablerow.appendChild(buttonCell);
+
+
+                /*
+            let newCell = document.createElement("td");
+
+
+
+            
+            newCell.append(deleteBtn, editBtn);*/
+            tablebody.appendChild(tablerow);
+            
+
 
             });
-        
         
 }else{
         console.log("Error");

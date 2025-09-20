@@ -178,3 +178,16 @@ body
     top: 10px;
 
 }
+
+button.deleteButton{
+    background-color: aquamarine;
+}
+
+button.editButton{
+    display: inline-block;
+    background-color: red;
+    
+    height: 30px;
+    width: 30px;
+    border-color: black;
+}
