@@ -12,7 +12,8 @@
     } 
     else
     {
-        $sql = "SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE UserID = ?";
+	$sql = "SELECT FirstName, LastName, Phone AS PhoneNumber, Email AS EmailAddress FROM Contacts WHERE UserID = ?";
+
         $params = [$inData['userId']];
         $types = 'i';
 
