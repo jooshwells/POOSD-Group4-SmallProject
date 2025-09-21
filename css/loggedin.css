@@ -180,7 +180,13 @@ body
 }
 
 button.deleteButton{
+    display: inline-block;
     background-color: aquamarine;
+
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+    outline: none;
 }
 
 button.editButton{
@@ -189,5 +195,6 @@ button.editButton{
     
     height: 30px;
     width: 30px;
-    border-color: black;
+    border: 1px solid black;
+    outline: none;
 }
