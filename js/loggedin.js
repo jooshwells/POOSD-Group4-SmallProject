@@ -13,6 +13,7 @@ let userId = 0;
 const allContactIds = []
 let firstName = "";
 let lastName = "";
+let contactId;
 
 function readCookie() {
     userId = -1;
@@ -133,7 +134,7 @@ function displayContacts(){
                 deleteBtn.innerText = "Delete";
                 deleteCell.appendChild(deleteBtn);
                 tablerow.appendChild(deleteCell);
-		deleteBtn.onclick = function() { deleteRow(index); };
+		        deleteBtn.onclick = function() { deleteRow(index); };
 
                 tablebody.appendChild(tablerow);
 
@@ -296,7 +297,7 @@ function deleteRow(id) {
         firstName: userFName,
         lastName: userLName,
         userId: userId,
-	contactId: allContactIds[id]
+	    contactId: allContactIds[id]
     };
 
     let jsonPayload = JSON.stringify(tmp);
