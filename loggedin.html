@@ -2,16 +2,31 @@
 <html lang="en">
 <head>
     <link href ="css/loggedin.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
 </head>
-<body>
-    <h1>You are logged in</h1>
+
+    <body onload = "displayTen();">
+    <div class="sidebar">
+        <p id ="sidebarTitle">Contact Manager</p>
+        <button id="viewAll" onclick="displayAll();">
+            <img src="images/eye.png"> <br/>    <span>View All Contacts</span>
+        </button>
+
+    <button id="addContact" onclick="addContact();">
+        <span id="addPlus">+</span>
+        <span id="addTxt">Add New Contacts</span>
+</button>
+    </div>
+    <div class = mainContent>
+    <h1>Welcome</h1>
     <input type ="text" placeholder="Search Contacts" id="search" oninput = "search();">
 
     <br/><br/><br/><br/>
 
+    
     <div class ="contactsBox">
 
        <table id="contactTable">
@@ -30,21 +45,40 @@
        </table>	
 
     </div>
-
+    <h3 id="searchTitle">Search Results</h3>
     <table id="Result">
+        <thead>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Number</th>
         <th>Email</th>
+        </thead>
         <tbody id = ResultBody></tbody>
     </table>
 
-    <p>Start typing above to search for specific contacts, or press the view all button below to see everyone
+    <p id ="hint">Start typing above to search for specific contacts, or press the view all button below to see everyone
         on your contact list.       
     </p>
 
-    <button id="viewAll" onclick="displayAll();">View All</button>
-    <button id="addContact" onclick="addContact();">Add Contacts</button>
+    <div class="tensB">
+    <table id="tens">
+        <thead>
+           <tr>
+     	      <th>First Name</th>
+               <th>Last Name</th>
+               <th>Number</th>
+               <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id= "tensBody">
+
+        </tbody>
+    </table>
+    </div>
+        <button id="load" onclick="displayTen();">Load More</button><br/>
+
+
+    
 
     <div class="addContactPB">
         <br/>
@@ -60,6 +94,7 @@
 
     <button id = "signOutB" 
     onclick="window.location.href='index.html' ">Sign out</button>
+    </div>
     <script src="js/loggedin.js" type="text/javascript"></script>
 </body>
 </html>

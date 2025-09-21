@@ -1,19 +1,19 @@
  body 
 {
-    background: linear-gradient(to bottom, #ef5252, rgb(237, 187, 187)70%);
-    animation: gradientMove 1s ease infinite;
-    /*font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
+    background: linear-gradient(to bottom, #b7d0ba, #f8e7b8 30%);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #title 
 {
+    margin-top: 5%;
     font-size: 40px;
     width: 100%;
     margin-left:auto;
     margin-right: auto;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
-    color: #FFFFFF;
+    color: #097C87;
 }
 
 #loginDiv
@@ -55,14 +55,13 @@
     width: 40%;        
     height: 40px;        
     border-radius: 25px;  
-    background-color: rgb(201, 22, 28); 
+    background-color: #097C87; 
     color: white;     
-    font-family: 'Ubuntu', sans-serif;
     
     }
 
 #toggleButton:hover {
-    background-color: #db3c3c; /* Hover color */
+    background-color: #F9D779; 
     opacity: 0.8;
 }
 #toggleButton .signup{
@@ -86,8 +85,12 @@
 
 #authButton{
     display: block;
-    background-color: rgb(201, 22, 28);
+    background-color: #097C87;
     color: white;
+}
+#authButton:hover {
+    background-color: #F9D779; 
+    opacity: 0.8;
 }
 
 #loginName
@@ -118,7 +121,6 @@ input[type="text"],input[type="password"]{
     width: 80%;
     margin-left: 10%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
     padding:10px 0;
 }
 
@@ -131,8 +133,7 @@ input[type="text"],input[type="password"]{
     margin-right:auto;
     margin-bottom: 1%;
     margin-top: 3%;
-    font-family: 'Ubuntu', sans-serif;
-    color: rgb(201, 22, 28);
+    color: #097C87;
 }
 
 #loginResult{

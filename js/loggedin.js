@@ -48,8 +48,16 @@ function search(){
     console.log(jsonResponse.results);  
     //
     let searchQuery= document.getElementById("search").value.toLowerCase()
+    if(searchQuery==""){
+
+            document.querySelector(".tensB").style.display ="table";
+            document.getElementById("Result").style.display ="none";         
+            document.getElementById("searchTitle").style.display ="none";
+
+
+    }else{
         let searchResults = jsonResponse.results.filter(contact=>Object.values(contact).some(value=>
-            value.toLowerCase().includes(searchQuery)
+            value && value.toString().toLowerCase().includes(searchQuery)
         )
     );
         let tablebody = document.getElementById("ResultBody");
@@ -67,16 +75,48 @@ function search(){
         
         
 //
-
+    document.getElementById("searchTitle").style.display = "block";
     document.getElementById("Result").style.display ="table";
     document.getElementById("contactTable").style.display ="none";
+    document.querySelector(".tensB").style.display ="none";
+}
 
 }
 
+let contactShow = 0;
 function displayAll(){
+   contactShow+=1
+    if (contactShow%2!=0){
+    
     document.getElementById("contactTable").style.display = "table";
     document.getElementById("Result").style.display = "none";
+    document.getElementById("hint").style.display = "none";
+    document.querySelector(".tensB").style.display = "none";
+
+    }
+    else{
+        document.getElementById("contactTable").style.display = "none";
+        document.getElementById("hint").style.display = "block"
+        document.querySelector(".tensB").style.display = "table";
+
+    }
 }
+
+let contactsShown = 10;
+function displayTen(){
+    let tablebody = document.getElementById("tensBody");
+    for(let i=contactsShown-10;i<contactsShown && i < jsonResponse.results.length;i++){
+        let contact = jsonResponse.results[i];  
+        let tablerow= document.createElement("tr");
+                tablerow.innerHTML = 
+                "<td>" + contact.FirstName + "</td>" +
+                "<td>" + contact.LastName + "</td>" +
+                "<td>" + contact.PhoneNumber + "</td>" +
+                "<td>" + contact.EmailAddress + "</td>"
+                tablebody.appendChild(tablerow);
+    }
+    contactsShown+=10;
+};
 
 function displayContacts(){
 
@@ -97,6 +137,8 @@ function displayContacts(){
                 return;
             }
 
+            displayTen();
+
             let tablebody = document.getElementById("contactTableBody");
             tablebody.innerHTML = "";
 
@@ -114,7 +156,7 @@ function displayContacts(){
                 let editBtn = document.createElement("button");
                 editBtn.classList.add("editButton");
                 editBtn.id = "editButton" + index;
-                editBtn.innerText = "Edit";
+                //editBtn.innerText = "Edit";
                 editBtn.onclick = function() { editRow(index); };
 
                 let saveBtn = document.createElement("button");
@@ -131,7 +173,7 @@ function displayContacts(){
                 let deleteCell = document.createElement("td");
                 let deleteBtn = document.createElement("button");
                 deleteBtn.classList.add("deleteButton");
-                deleteBtn.innerText = "Delete";
+                //deleteBtn.innerText = "Delete";
                 deleteCell.appendChild(deleteBtn);
                 tablerow.appendChild(deleteCell);
 		        deleteBtn.onclick = function() { deleteRow(index); };
@@ -206,20 +248,17 @@ catch(err){
 
 
     document.querySelector(".addContactPB").style.display = "none";
-    document.querySelector("body").style.backgroundColor = "rgba(206,153,153,1)";
 
 }
 
 function cancelAdd(){
     document.querySelector(".addContactPB").style.display = "none";
-    document.querySelector("body").style.backgroundColor = "rgba(206,153,153,1)";
 }
 
 function addContact(){
         document.querySelector(".addContactPB").style.opacity = "1";
 
     document.querySelector(".addContactPB").style.display = "block";
-    document.querySelector("body").style.backgroundColor = "rgba(206,153,153,0.5)";
 
 
 }
