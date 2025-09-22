@@ -113,6 +113,8 @@ function displayAll(){
 
 let contactsShown = 10;
 function displayTen(){
+    if (jsonResponse.results == null) // empty check
+        return;
     if(searchMode==1){
 document.getElementById("loadWarning").style.display= "block";
 setTimeout(() => {
