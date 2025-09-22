@@ -64,8 +64,7 @@
         }
             
         if (empty($searchArray)) {
-            // returnWithError("No Records Found");
-            returnWithInfo($searchResults);
+            returnWithError("No Records Found");
         } else {
             $searchResults = json_encode($searchArray);
             returnWithInfo($searchResults);

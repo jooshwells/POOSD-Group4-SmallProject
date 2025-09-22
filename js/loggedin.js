@@ -178,7 +178,7 @@ function displayContacts(){
         if(xhr.status == 200){
             var contactData = JSON.parse(xhr.responseText);
             jsonResponse = contactData;
-            if (contactData.error) {
+            if (contactData.error && contactData.error != "No Records Found") {
                 console.log("Error:", contactData.error);
                 return;
             }
