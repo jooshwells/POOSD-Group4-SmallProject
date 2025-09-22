@@ -12,7 +12,7 @@
     <div class="sidebar">
         <p id ="sidebarTitle">Contact Manager</p>
         <button id="viewAll" onclick="displayAll();">
-            <img src="images/eye.png"> <br/>    <span>View All Contacts</span>
+            <img src="images/eye.png" alt="View"> <br/>    <span>View All Contacts</span>
         </button>
 
     <button id="addContact" onclick="addContact();">
@@ -45,6 +45,10 @@
        </table>	
 
     </div>
+    <p id ="hint">Start typing above to search for specific contacts, or press the view all button below to see everyone
+        on your contact list.       
+    </p>
+
     <h3 id="searchTitle">Search Results</h3>
     <table id="Result">
         <thead>
@@ -56,9 +60,7 @@
         <tbody id = ResultBody></tbody>
     </table>
 
-    <p id ="hint">Start typing above to search for specific contacts, or press the view all button below to see everyone
-        on your contact list.       
-    </p>
+    
 
     <div class="tensB">
     <table id="tens">
@@ -68,6 +70,8 @@
                <th>Last Name</th>
                <th>Number</th>
                <th>Email</th>
+               <th>Edit</th>
+               <th>Delete</th>
             </tr>
         </thead>
         <tbody id= "tensBody">
@@ -76,6 +80,7 @@
     </table>
     </div>
         <button id="load" onclick="displayTen();">Load More</button><br/>
+        <p id="loadWarning">Stop searching to load more contacts</p>
 
 
     

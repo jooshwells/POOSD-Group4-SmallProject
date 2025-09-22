@@ -44,6 +44,7 @@ displayContacts();
 
 let jsonResponse;
 
+let searchMode =0;
 function search(){
     console.log(jsonResponse.results);  
     //
@@ -53,7 +54,7 @@ function search(){
             document.querySelector(".tensB").style.display ="table";
             document.getElementById("Result").style.display ="none";         
             document.getElementById("searchTitle").style.display ="none";
-
+            searchMode = 0;
 
     }else{
         let searchResults = jsonResponse.results.filter(contact=>Object.values(contact).some(value=>
@@ -79,6 +80,7 @@ function search(){
     document.getElementById("Result").style.display ="table";
     document.getElementById("contactTable").style.display ="none";
     document.querySelector(".tensB").style.display ="none";
+    searchMode=1;
 }
 
 }
@@ -92,18 +94,33 @@ function displayAll(){
     document.getElementById("Result").style.display = "none";
     document.getElementById("hint").style.display = "none";
     document.querySelector(".tensB").style.display = "none";
+    document.getElementById("tens").style.display = "none";
+    document.getElementById("searchTitle").style.display = "none";
+    document.getElementById("load").style.display = "none";
+
 
     }
     else{
         document.getElementById("contactTable").style.display = "none";
         document.getElementById("hint").style.display = "block"
-        document.querySelector(".tensB").style.display = "table";
+        document.getElementById("tens").style.display = "table";
+        document.getElementById("load").style.display = "block";
+
+
 
     }
 }
 
 let contactsShown = 10;
 function displayTen(){
+    if(searchMode==1){
+document.getElementById("loadWarning").style.display= "block";
+setTimeout(() => {
+document.getElementById("loadWarning").style.display= "none";
+    }, 3000);
+
+}
+            else{
     let tablebody = document.getElementById("tensBody");
     for(let i=contactsShown-10;i<contactsShown && i < jsonResponse.results.length;i++){
         let contact = jsonResponse.results[i];  
@@ -113,9 +130,38 @@ function displayTen(){
                 "<td>" + contact.LastName + "</td>" +
                 "<td>" + contact.PhoneNumber + "</td>" +
                 "<td>" + contact.EmailAddress + "</td>"
+
+                let actionCell = document.createElement("td");
+
+                let editBtn = document.createElement("button");
+                editBtn.classList.add("editButton");
+                editBtn.id = "editButton" + i;
+                //editBtn.innerText = "Edit";
+                editBtn.onclick = function() { editRow(i); };
+
+                let saveBtn = document.createElement("button");
+                saveBtn.classList.add("saveButton");
+                saveBtn.id = "saveButton" + i;
+                saveBtn.innerText = "Save";
+                saveBtn.style.display = "none";
+                saveBtn.onclick = function() { saveRow(i); };
+
+                actionCell.appendChild(editBtn);
+                actionCell.appendChild(saveBtn);
+                tablerow.appendChild(actionCell);
+
+                let deleteCell = document.createElement("td");
+                let deleteBtn = document.createElement("button");
+                deleteBtn.classList.add("deleteButton");
+                //deleteBtn.innerText = "Delete";
+                deleteCell.appendChild(deleteBtn);
+                tablerow.appendChild(deleteCell);
+		        deleteBtn.onclick = function() { deleteRow(i); };
+
                 tablebody.appendChild(tablerow);
     }
     contactsShown+=10;
+}
 };
 
 function displayContacts(){
@@ -138,7 +184,7 @@ function displayContacts(){
             }
 
             displayTen();
-
+            
             let tablebody = document.getElementById("contactTableBody");
             tablebody.innerHTML = "";
 
@@ -189,6 +235,7 @@ function displayContacts(){
     };
 
     xhr.send(JSON.stringify(payload));
+
 }
 
 function verifyContact(){
