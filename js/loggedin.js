@@ -189,47 +189,49 @@ function displayContacts(){
             
             let tablebody = document.getElementById("contactTableBody");
             tablebody.innerHTML = "";
+            
+            if (contactData.results != null) {
+                contactData.results.forEach(function(contact, index) {
+                    let tablerow = document.createElement("tr");
+                    tablerow.innerHTML =
+                    "<td id='firstN" + index + "'>" + contact.FirstName + "</td>" +
+                    "<td id='lastN" + index + "'>" + contact.LastName + "</td>" +
+                    "<td id='phoneN" + index + "'>" + contact.PhoneNumber + "</td>" +
+                    "<td id='email" + index + "'>" + contact.EmailAddress + "</td>";
 
-            contactData.results.forEach(function(contact, index) {
-                let tablerow = document.createElement("tr");
-                tablerow.innerHTML =
-                "<td id='firstN" + index + "'>" + contact.FirstName + "</td>" +
-                "<td id='lastN" + index + "'>" + contact.LastName + "</td>" +
-                "<td id='phoneN" + index + "'>" + contact.PhoneNumber + "</td>" +
-                "<td id='email" + index + "'>" + contact.EmailAddress + "</td>";
+                    let actionCell = document.createElement("td");
+                    actionCell.classList.add("actionCell");
 
-                let actionCell = document.createElement("td");
-                actionCell.classList.add("actionCell");
+                    let editBtn = document.createElement("button");
+                    editBtn.classList.add("editButton");
+                    editBtn.id = "editButton" + index;
+                    //editBtn.innerText = "Edit";
+                    editBtn.onclick = function() { editRow(index); };
 
-                let editBtn = document.createElement("button");
-                editBtn.classList.add("editButton");
-                editBtn.id = "editButton" + index;
-                //editBtn.innerText = "Edit";
-                editBtn.onclick = function() { editRow(index); };
+                    let saveBtn = document.createElement("button");
+                    saveBtn.classList.add("saveButton");
+                    saveBtn.id = "saveButton" + index;
+                    saveBtn.innerText = "Save";
+                    saveBtn.style.display = "none";
+                    saveBtn.onclick = function() { saveRow(index); };
 
-                let saveBtn = document.createElement("button");
-                saveBtn.classList.add("saveButton");
-                saveBtn.id = "saveButton" + index;
-                saveBtn.innerText = "Save";
-                saveBtn.style.display = "none";
-                saveBtn.onclick = function() { saveRow(index); };
+                    actionCell.appendChild(editBtn);
+                    actionCell.appendChild(saveBtn);
+                    tablerow.appendChild(actionCell);
 
-                actionCell.appendChild(editBtn);
-                actionCell.appendChild(saveBtn);
-                tablerow.appendChild(actionCell);
+                    let deleteCell = document.createElement("td");
+                    let deleteBtn = document.createElement("button");
+                    deleteBtn.classList.add("deleteButton");
+                    //deleteBtn.innerText = "Delete";
+                    deleteCell.appendChild(deleteBtn);
+                    tablerow.appendChild(deleteCell);
+                    deleteBtn.onclick = function() { deleteRow(index); };
 
-                let deleteCell = document.createElement("td");
-                let deleteBtn = document.createElement("button");
-                deleteBtn.classList.add("deleteButton");
-                //deleteBtn.innerText = "Delete";
-                deleteCell.appendChild(deleteBtn);
-                tablerow.appendChild(deleteCell);
-		        deleteBtn.onclick = function() { deleteRow(index); };
+                    tablebody.appendChild(tablerow);
 
-                tablebody.appendChild(tablerow);
-
-		allContactIds[index] = contact.ID;
-            });
+            allContactIds[index] = contact.ID;
+                });
+            }
 
         } else {
             console.log("Error");
