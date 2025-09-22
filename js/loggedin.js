@@ -156,12 +156,7 @@ document.getElementById("loadWarning").style.display= "none";
                 //deleteBtn.innerText = "Delete";
                 deleteCell.appendChild(deleteBtn);
                 tablerow.appendChild(deleteCell);
-		        deleteBtn.onclick = function() 
-                { 
-                   
-                    deleteRow(i);
-                    
-                };
+		        deleteBtn.onclick = function() { deleteRow(i); };
 
                 tablebody.appendChild(tablerow);
     }
@@ -227,12 +222,7 @@ function displayContacts(){
                 //deleteBtn.innerText = "Delete";
                 deleteCell.appendChild(deleteBtn);
                 tablerow.appendChild(deleteCell);
-		        deleteBtn.onclick = function() 
-                { 
-                    
-                    deleteRow(index);
-                    
-                };
+		        deleteBtn.onclick = function() { deleteRow(index); };
 
                 tablebody.appendChild(tablerow);
 
