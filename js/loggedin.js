@@ -158,10 +158,9 @@ document.getElementById("loadWarning").style.display= "none";
                 tablerow.appendChild(deleteCell);
 		        deleteBtn.onclick = function() 
                 { 
-                    if(confirm("Are you sure you would like to delete this contacT?"))
-                    {
-                        deleteRow(i);
-                    }
+                   
+                    deleteRow(i);
+                    
                 };
 
                 tablebody.appendChild(tablerow);
@@ -230,10 +229,9 @@ function displayContacts(){
                 tablerow.appendChild(deleteCell);
 		        deleteBtn.onclick = function() 
                 { 
-                    if(confirm("Are you sure you would like to delete this contacT?"))
-                    {
-                        deleteRow(index);
-                    }
+                    
+                    deleteRow(index);
+                    
                 };
 
                 tablebody.appendChild(tablerow);
