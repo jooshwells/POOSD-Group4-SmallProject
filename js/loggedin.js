@@ -228,7 +228,13 @@ function displayContacts(){
                 //deleteBtn.innerText = "Delete";
                 deleteCell.appendChild(deleteBtn);
                 tablerow.appendChild(deleteCell);
-		        deleteBtn.onclick = function() { deleteRow(index); };
+		        deleteBtn.onclick = function() 
+                { 
+                    if(confirm("Are you sure you would like to delete this contacT?"))
+                    {
+                        deleteRow(index);
+                    }
+                };
 
                 tablebody.appendChild(tablerow);
 
