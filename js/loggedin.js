@@ -156,7 +156,13 @@ document.getElementById("loadWarning").style.display= "none";
                 //deleteBtn.innerText = "Delete";
                 deleteCell.appendChild(deleteBtn);
                 tablerow.appendChild(deleteCell);
-		        deleteBtn.onclick = function() { deleteRow(i); };
+		        deleteBtn.onclick = function() 
+                { 
+                    if(confirm("Are you sure you would like to delete this contacT?"))
+                    {
+                        deleteRow(i);
+                    }
+                };
 
                 tablebody.appendChild(tablerow);
     }
