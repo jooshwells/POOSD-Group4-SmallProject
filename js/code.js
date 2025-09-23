@@ -28,7 +28,7 @@ function toggleLoginMode() {
         document.getElementById("toggleButton").innerText = "Switch to Sign Up";
         document.getElementById("firstName").style.display = "none";
         document.getElementById("lastName").style.display = "none";
-        document.getElementById("authResult").innerText = "";
+        // document.getElementById("authResult").innerText = "";
     }
 }
 
