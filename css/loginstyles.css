@@ -136,6 +136,13 @@ input[type="text"],input[type="password"]{
     color: #097C87;
 }
 
+#authResult {
+    font-size: 16px;
+    text-align: center;
+    color: #95060a;
+    margin-bottom: 2%;
+}
+
 #loginResult{
     font-size: 0.8em;
     width: 90%;
