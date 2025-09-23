@@ -158,7 +158,10 @@ document.getElementById("loadWarning").style.display= "none";
                 //deleteBtn.innerText = "Delete";
                 deleteCell.appendChild(deleteBtn);
                 tablerow.appendChild(deleteCell);
-		        deleteBtn.onclick = function() { deleteRow(i); };
+		        deleteBtn.onclick = function() { 
+                    if(confirm("Are you sure you want to delete this contact?"))
+                        deleteRow(i); 
+                };
 
                 tablebody.appendChild(tablerow);
     }
@@ -180,17 +183,14 @@ function displayContacts(){
         if(xhr.status == 200){
             var contactData = JSON.parse(xhr.responseText);
             jsonResponse = contactData;
-            if (contactData.error && contactData.error != "No Records Found") {
-                console.log("Error:", contactData.error);
-                return;
-            }
 
-            displayTen();
-            
-            let tablebody = document.getElementById("contactTableBody");
-            tablebody.innerHTML = "";
-            
-            if (contactData.results != null) {
+            document.getElementById("contactTableBody").innerHTML = "";
+            document.getElementById("tensBody").innerHTML = "";
+
+            if (contactData.results && contactData.results.length > 0) {
+
+                displayTen(); 
+                
                 contactData.results.forEach(function(contact, index) {
                     let tablerow = document.createElement("tr");
                     tablerow.innerHTML =
@@ -205,7 +205,6 @@ function displayContacts(){
                     let editBtn = document.createElement("button");
                     editBtn.classList.add("editButton");
                     editBtn.id = "editButton" + index;
-                    //editBtn.innerText = "Edit";
                     editBtn.onclick = function() { editRow(index); };
 
                     let saveBtn = document.createElement("button");
@@ -222,24 +221,25 @@ function displayContacts(){
                     let deleteCell = document.createElement("td");
                     let deleteBtn = document.createElement("button");
                     deleteBtn.classList.add("deleteButton");
-                    //deleteBtn.innerText = "Delete";
                     deleteCell.appendChild(deleteBtn);
                     tablerow.appendChild(deleteCell);
-                    deleteBtn.onclick = function() { deleteRow(index); };
+                    deleteBtn.onclick = function() { 
+                        if(confirm("Are you sure you want to delete this contact?"))
+                            deleteRow(index); 
+                    };
 
-                    tablebody.appendChild(tablerow);
-
-            allContactIds[index] = contact.ID;
+                    document.getElementById("contactTableBody").appendChild(tablerow);
+                    allContactIds[index] = contact.ID;
                 });
+            } else {
+                console.log("No Records Found.");
             }
-
         } else {
-            console.log("Error");
+            console.log("Error loading contacts from server. Status:", xhr.status);
         }
     };
 
     xhr.send(JSON.stringify(payload));
-
 }
 
 function verifyContact(){
