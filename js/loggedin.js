@@ -317,22 +317,43 @@ function addContact(){
 }
 
 function editRow(id) {
+    // Hide edit, show save
     document.getElementById("editButton" + id).style.display = "none";
     document.getElementById("saveButton" + id).style.display = "inline-block";
 
-    var fNameId = document.getElementById("firstN" + id);
-    var fNameData = fNameId.innerText;
-    var lNameId = document.getElementById("lastN" + id);
-    var lNameData = lNameId.innerText;
-    var pNumId = document.getElementById("phoneN" + id);
-    var phoneData = pNumId.innerText;
-    var emailId = document.getElementById("email" + id);
-    var emailData = emailId.innerText;
+    // Find the correct row in the visible table
+    let table = document.getElementById("contactTable").style.display === "table" ? document.getElementById("contactTable") : document.getElementById("tens");
+    let row = table.rows[id + 1]; // +1 to skip header row
 
-    fNameId.innerHTML = "<input type='text' id='newFName" + id + "' value='" + fNameData + "'>";
-    lNameId.innerHTML = "<input type='text' id='newLName" + id + "' value='" + lNameData + "'>";
-    pNumId.innerHTML = "<input type='text' id='newPhone" + id + "' value='" + phoneData + "'>";
-    emailId.innerHTML = "<input type='text' id='newEmail" + id + "' value='" + emailData + "'>";
+    if (!row) {
+        // Fallback for tens table if index is off
+        const tensBody = document.getElementById("tensBody");
+        const rows = tensBody.getElementsByTagName("tr");
+        for (let i = 0; i < rows.length; i++) {
+            const button = rows[i].querySelector(`#editButton${id}`);
+            if (button) {
+                row = rows[i];
+                break;
+            }
+        }
+    }
+
+
+    if (row) {
+        var fNameId = row.cells[0];
+        var fNameData = fNameId.innerText;
+        var lNameId = row.cells[1];
+        var lNameData = lNameId.innerText;
+        var pNumId = row.cells[2];
+        var phoneData = pNumId.innerText;
+        var emailId = row.cells[3];
+        var emailData = emailId.innerText;
+
+        fNameId.innerHTML = "<input type='text' id='newFName" + id + "' value='" + fNameData + "'>";
+        lNameId.innerHTML = "<input type='text' id='newLName" + id + "' value='" + lNameData + "'>";
+        pNumId.innerHTML = "<input type='text' id='newPhone" + id + "' value='" + phoneData + "'>";
+        emailId.innerHTML = "<input type='text' id='newEmail" + id + "' value='" + emailData + "'>";
+    }
 }
 
 function verifyContact(){
