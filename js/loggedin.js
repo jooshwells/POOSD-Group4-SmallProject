@@ -14,6 +14,7 @@ const allContactIds = []
 let firstName = "";
 let lastName = "";
 let contactId;
+let jsonResponse;
 
 function readCookie() {
     userId = -1;
@@ -41,8 +42,6 @@ function readCookie() {
 }
 readCookie();
 displayContacts();
-
-let jsonResponse;
 
 let searchMode =0;
 function search(){
