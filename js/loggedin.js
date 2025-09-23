@@ -303,14 +303,17 @@ catch(err){
 
 function cancelAdd(){
     document.querySelector(".addContactPB").style.display = "none";
+    document.getElementById("addContactResult").innerHTML = "";
+    document.getElementById("firstN").value ="";
+    document.getElementById("lastN").value="";
+    document.getElementById("phoneN").value="";
+    document.getElementById("email").value="";
 }
 
 function addContact(){
-        document.querySelector(".addContactPB").style.opacity = "1";
-
+    document.querySelector(".addContactPB").style.opacity = "1";
     document.querySelector(".addContactPB").style.display = "block";
-
-
+    document.getElementById("addContactResult").innerHTML = "";
 }
 
 function editRow(id) {
@@ -330,6 +333,85 @@ function editRow(id) {
     lNameId.innerHTML = "<input type='text' id='newLName" + id + "' value='" + lNameData + "'>";
     pNumId.innerHTML = "<input type='text' id='newPhone" + id + "' value='" + phoneData + "'>";
     emailId.innerHTML = "<input type='text' id='newEmail" + id + "' value='" + emailData + "'>";
+}
+
+function verifyContact(){
+    //Declare variables and assign
+    let fName = document.getElementById("firstN").value;
+    let lName = document.getElementById("lastN").value;
+    let num = document.getElementById("phoneN").value;
+    let em = document.getElementById("email").value;
+    let addContactResult = document.getElementById("addContactResult");
+    addContactResult.innerHTML = "";
+
+    // Phone number validation using regex
+    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+    if (!phoneRegex.test(num)) {
+        addContactResult.innerHTML = "Invalid phone number format. Use 123-456-7890.";
+        return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(em)) {
+        addContactResult.innerHTML = "Invalid email address format.";
+        return;
+    }
+
+
+    //Take input
+
+    let tmp = {
+        firstName: fName,
+        lastName: lName,
+        phone: num,
+        email: em,
+        userId: userId,
+    }
+
+    //
+    let xhr= new XMLHttpRequest();
+    let url= urlBase + "/AddContact."+ extension;
+    xhr.open("POST", url, true)
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+
+    //
+    try{
+        xhr.onload = function(){
+            if (xhr.status==200){
+
+                //Clear it out
+                document.getElementById("firstN").value ="";
+                document.getElementById("lastN").value="";
+                document.getElementById("phoneN").value="";
+                document.getElementById("email").value="";
+                addContactResult.innerHTML = "";
+                document.querySelector(".addContactPB").style.display = "none";
+                console.log("Contact Added" );
+
+                displayContacts();
+            }
+            else if(xhr.status==400){
+                let response = JSON.parse(xhr.responseText);
+                addContactResult.innerHTML = response.error;
+            }
+            else if(xhr.status==409){
+                console.log("Contact already exists!");
+                addContactResult.innerHTML = "Contact already exists!";
+            }
+            else{
+                console.log("Contact NOT Added", xhr.status);
+            }
+
+        }
+        xhr.send(JSON.stringify(tmp));
+
+    }
+    catch(err){
+        console.error(err);
+    }
+
 }
 
 function saveRow(id) {
