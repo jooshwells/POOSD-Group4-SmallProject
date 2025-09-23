@@ -442,22 +442,41 @@ function saveRow(id) {
     var emailVal = document.getElementById("newEmail" + id).value;
     var idVal = allContactIds[id]
 
-    document.getElementById("firstN" + id).innerHTML = namefVal;
-    document.getElementById("lastN" + id).innerHTML = namelVal;
-    document.getElementById("phoneN" + id).innerHTML = phoneVal;
-    document.getElementById("email" + id).innerHTML = emailVal;
+    let table = document.getElementById("contactTable").style.display === "table" ? document.getElementById("contactTable") : document.getElementById("tens");
+    let row = table.rows[id + 1]; // +1 to skip header row
+
+    if (!row) {
+        // Fallback for tens table if index is off
+        const tensBody = document.getElementById("tensBody");
+        const rows = tensBody.getElementsByTagName("tr");
+        for (let i = 0; i < rows.length; i++) {
+            const button = rows[i].querySelector(`#saveButton${id}`);
+            if (button) {
+                row = rows[i];
+                break;
+            }
+        }
+    }
+
+    if (row) {
+        row.cells[0].innerHTML = namefVal;
+        row.cells[1].innerHTML = namelVal;
+        row.cells[2].innerHTML = phoneVal;
+        row.cells[3].innerHTML = emailVal;
+    }
+
 
     document.getElementById("editButton" + id).style.display = "inline-block";
     document.getElementById("saveButton" + id).style.display = "none";
 
     let tmp = {
-    firstName: namefVal,
-    lastName: namelVal,
-    phone: phoneVal,
-    email: emailVal,
-    userId: userId,
-    contactId: allContactIds[id]
-}
+        firstName: namefVal,
+        lastName: namelVal,
+        phone: phoneVal,
+        email: emailVal,
+        userId: userId,
+        contactId: allContactIds[id]
+    }
 
     let jsonPayload = JSON.stringify(tmp);
 
