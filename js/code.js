@@ -87,6 +87,12 @@ function doAuth() {
         let username = document.getElementById("authName").value;
         let password = document.getElementById("authPassword").value;
 
+        // Basic validation to ensure fields are not empty
+        if (firstName === "" || lastName === "" || username === "" || password === "") {
+            document.getElementById("authResult").innerHTML = "Please fill in all fields.";
+            return;
+        }
+
         var hash = md5(password);
 
         document.getElementById("authResult").innerHTML = "";
@@ -114,18 +120,13 @@ function doAuth() {
                 }
 
                 if (this.status == 409) {
-                    document.getElementById("authResult").innerHTML = "User already exists";
+                    document.getElementById("authResult").innerHTML = "Username already taken. Please choose another.";
                     return;
                 }
 
                 if (this.status == 200) {
-
-                    let jsonObject = JSON.parse(xhr.responseText);
-                    userId = jsonObject.id;
-                    document.getElementById("authResult").innerHTML = "User added";
-                    firstName = jsonObject.firstName;
-                    lastName = jsonObject.lastName;
-                    saveCookie();
+                    document.getElementById("authResult").innerHTML = "Registration successful! You can now log in.";
+                    toggleLoginMode(); // Switch back to login form
                 }
             };
 
