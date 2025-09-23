@@ -1,7 +1,4 @@
-/* Commented line swapped for line below comment for local testing
 const urlBase = "./LAMPAPI";
- */
-const urlBase = "/LAMPAPI";
 
 const extension = "php";
 
@@ -46,7 +43,6 @@ displayContacts();
 let searchMode =0;
 function search(){
     console.log(jsonResponse.results);  
-    //
     let searchQuery= document.getElementById("search").value.toLowerCase()
     if(searchQuery==""){
 
@@ -74,7 +70,6 @@ function search(){
     })
         
         
-//
     document.getElementById("searchTitle").style.display = "block";
     document.getElementById("Result").style.display ="table";
     document.getElementById("contactTable").style.display ="none";
@@ -317,47 +312,42 @@ function addContact(){
 }
 
 function editRow(id) {
-    // Hide edit, show save
     document.getElementById("editButton" + id).style.display = "none";
     document.getElementById("saveButton" + id).style.display = "inline-block";
 
-    // Find the correct row in the visible table
-    let table = document.getElementById("contactTable").style.display === "table" ? document.getElementById("contactTable") : document.getElementById("tens");
-    let row = table.rows[id + 1]; // +1 to skip header row
+    let table;
+    if (document.getElementById("contactTable").style.display === "table") {
+        table = document.getElementById("contactTable");
+    } else {
+        table = document.getElementById("tens");
+    }
 
-    if (!row) {
-        // Fallback for tens table if index is off
-        const tensBody = document.getElementById("tensBody");
-        const rows = tensBody.getElementsByTagName("tr");
-        for (let i = 0; i < rows.length; i++) {
-            const button = rows[i].querySelector(`#editButton${id}`);
-            if (button) {
-                row = rows[i];
-                break;
-            }
+    let row = null;
+
+    const tableBody = table.getElementsByTagName('tbody')[0];
+    const rows = tableBody.getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+        const button = rows[i].querySelector(`#editButton${id}`);
+        if (button) {
+            row = rows[i];
+            break;
         }
     }
 
-
     if (row) {
-        var fNameId = row.cells[0];
-        var fNameData = fNameId.innerText;
-        var lNameId = row.cells[1];
-        var lNameData = lNameId.innerText;
-        var pNumId = row.cells[2];
-        var phoneData = pNumId.innerText;
-        var emailId = row.cells[3];
-        var emailData = emailId.innerText;
+        var fNameData = row.cells[0].innerText;
+        var lNameData = row.cells[1].innerText;
+        var phoneData = row.cells[2].innerText;
+        var emailData = row.cells[3].innerText;
 
-        fNameId.innerHTML = "<input type='text' id='newFName" + id + "' value='" + fNameData + "'>";
-        lNameId.innerHTML = "<input type='text' id='newLName" + id + "' value='" + lNameData + "'>";
-        pNumId.innerHTML = "<input type='text' id='newPhone" + id + "' value='" + phoneData + "'>";
-        emailId.innerHTML = "<input type='text' id='newEmail" + id + "' value='" + emailData + "'>";
+        row.cells[0].innerHTML = "<input type='text' id='newFName" + id + "' value='" + fNameData + "'>";
+        row.cells[1].innerHTML = "<input type='text' id='newLName" + id + "' value='" + lNameData + "'>";
+        row.cells[2].innerHTML = "<input type='text' id='newPhone" + id + "' value='" + phoneData + "'>";
+        row.cells[3].innerHTML = "<input type='text' id='newEmail" + id + "' value='" + emailData + "'>";
     }
 }
 
 function verifyContact(){
-    //Declare variables and assign
     let fName = document.getElementById("firstN").value;
     let lName = document.getElementById("lastN").value;
     let num = document.getElementById("phoneN").value;
@@ -365,7 +355,6 @@ function verifyContact(){
     let addContactResult = document.getElementById("addContactResult");
     addContactResult.innerHTML = "";
 
-    // Phone number validation using regex
     const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
     if (!phoneRegex.test(num)) {
         addContactResult.innerHTML = "Invalid phone number format. Use 123-456-7890.";
@@ -390,14 +379,12 @@ function verifyContact(){
         userId: userId,
     }
 
-    //
     let xhr= new XMLHttpRequest();
     let url= urlBase + "/AddContact."+ extension;
     xhr.open("POST", url, true)
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 
-    //
     try{
         xhr.onload = function(){
             if (xhr.status==200){
@@ -440,23 +427,25 @@ function saveRow(id) {
     var namelVal = document.getElementById("newLName" + id).value;
     var phoneVal = document.getElementById("newPhone" + id).value;
     var emailVal = document.getElementById("newEmail" + id).value;
-    var idVal = allContactIds[id]
 
-    let table = document.getElementById("contactTable").style.display === "table" ? document.getElementById("contactTable") : document.getElementById("tens");
-    let row = table.rows[id + 1]; // +1 to skip header row
+    let table;
+    if (document.getElementById("contactTable").style.display === "table") {
+        table = document.getElementById("contactTable");
+    } else {
+        table = document.getElementById("tens");
+    }
 
-    if (!row) {
-        // Fallback for tens table if index is off
-        const tensBody = document.getElementById("tensBody");
-        const rows = tensBody.getElementsByTagName("tr");
-        for (let i = 0; i < rows.length; i++) {
-            const button = rows[i].querySelector(`#saveButton${id}`);
-            if (button) {
-                row = rows[i];
-                break;
-            }
+    let row = null;
+    const tableBody = table.getElementsByTagName('tbody')[0];
+    const rows = tableBody.getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+        const button = rows[i].querySelector(`#saveButton${id}`);
+        if (button) {
+            row = rows[i];
+            break;
         }
     }
+
 
     if (row) {
         row.cells[0].innerHTML = namefVal;
@@ -464,7 +453,6 @@ function saveRow(id) {
         row.cells[2].innerHTML = phoneVal;
         row.cells[3].innerHTML = emailVal;
     }
-
 
     document.getElementById("editButton" + id).style.display = "inline-block";
     document.getElementById("saveButton" + id).style.display = "none";
